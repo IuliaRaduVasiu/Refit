@@ -1,0 +1,88 @@
+{
+  "format": 1,
+  "restore": {
+    "/Users/iulia/Desktop/Refit/RefitFramework.csproj": {}
+  },
+  "projects": {
+    "/Users/iulia/Desktop/Refit/RefitFramework.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/iulia/Desktop/Refit/RefitFramework.csproj",
+        "projectName": "RefitFramework",
+        "projectPath": "/Users/iulia/Desktop/Refit/RefitFramework.csproj",
+        "packagesPath": "/Users/iulia/.nuget/packages/",
+        "outputPath": "/Users/iulia/Desktop/Refit/obj/",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "/Users/iulia/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp2.1"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp2.1": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp2.1": {
+          "dependencies": {
+            "Microsoft.NET.Test.Sdk": {
+              "target": "Package",
+              "version": "[16.5.0, )"
+            },
+            "Microsoft.NETCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.1.0, )",
+              "autoReferenced": true
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[12.0.3, )"
+            },
+            "System.Security.Permissions": {
+              "target": "Package",
+              "version": "[4.6.0-preview6.19303.8, )"
+            },
+            "more.xunit.runner.visualstudio": {
+              "target": "Package",
+              "version": "[2.3.1, )"
+            },
+            "refit": {
+              "target": "Package",
+              "version": "[5.0.23, )"
+            },
+            "xunit": {
+              "target": "Package",
+              "version": "[2.4.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/3.1.100/RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

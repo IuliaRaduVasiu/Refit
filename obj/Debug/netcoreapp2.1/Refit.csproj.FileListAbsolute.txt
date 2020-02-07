@@ -1,0 +1,3 @@
+/Users/iulia/Desktop/Refit/obj/Debug/netcoreapp2.1/Refit.csprojAssemblyReference.cache
+/Users/iulia/Desktop/Refit/obj/Debug/netcoreapp2.1/Refit.AssemblyInfoInputs.cache
+/Users/iulia/Desktop/Refit/obj/Debug/netcoreapp2.1/Refit.AssemblyInfo.cs
