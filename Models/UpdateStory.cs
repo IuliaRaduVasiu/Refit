@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 
 namespace Refit
 {
-    public class UpdateStoryBody
+    public class UpdateStory
     {
         [JsonProperty("storyId")]
         public int StoryId { get; set; }

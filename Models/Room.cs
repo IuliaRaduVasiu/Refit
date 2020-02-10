@@ -1,6 +1,6 @@
 namespace Refit
 {
-        public class RoomBody
+        public class Room
     {
         public string name {get; set; }
         

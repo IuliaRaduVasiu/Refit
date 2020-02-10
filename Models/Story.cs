@@ -2,7 +2,7 @@ using Newtonsoft.Json;
 
 namespace Refit
 {
-        public class StoryBody
+        public class Story
     {
         [JsonProperty("gameId")]
           public int RoomId {get; set; }

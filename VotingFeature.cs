@@ -54,7 +54,7 @@ namespace Refit
 
               //When the user creates a room
 
-            var roomDetails = new RoomBody
+            var roomDetails = new Room
             {
                 name = roomName,
                 cardSetType = 1,
@@ -66,8 +66,8 @@ namespace Refit
                 countdownTimer = false,
                 countdownTimerValue = 30
             };
-            var roomActions = RestService.For<RoomsPageInterface.IRoom>(client);
-            var info = await roomActions.GetRoomInfo(roomDetails);
+            var roomActions = RestService.For<CreateRoom.IRoom>(client);
+            var info = await roomActions.NewRoom(roomDetails);
 
             //Then the room is created
 
@@ -87,7 +87,7 @@ namespace Refit
 
             //When the user creates a room
 
-            var roomDetails = new RoomBody
+            var roomDetails = new Room
             {
                 name = roomName,
                 cardSetType = 1,
@@ -99,10 +99,10 @@ namespace Refit
                 countdownTimer = false,
                 countdownTimerValue = 30
             };
-            var roomActions = RestService.For<RoomsPageInterface.IRoom>(client);
-            var info = await roomActions.GetRoomInfo(roomDetails);   
+            var roomActions = RestService.For<CreateRoom.IRoom>(client);
+            var info = await roomActions.NewRoom(roomDetails);   
 
-              var newRoomDetails = new RoomBody
+              var newRoomDetails = new Room
             {
                 name = newName,
                 cardSetType = 1,
@@ -114,11 +114,11 @@ namespace Refit
                 countdownTimer = false,
                 countdownTimerValue = 30
             };
-            var newRoomName = RestService.For<RoomsPageInterface.IRoom>(client);
+            var newRoomName = RestService.For<NewName.IChangeRoomName>(client);
            
 
             //Then the user can change the room name
-            var newInfo = await newRoomName.GetRoomInfo(newRoomDetails);
+            var newInfo = await newRoomName.NewRoomName(newRoomDetails);
         }
 
               [Fact]
@@ -135,7 +135,7 @@ namespace Refit
 
             //When the user creates a room
 
-            var roomDetails = new RoomBody
+            var roomDetails = new Room
             {
                 name = roomName,
                 cardSetType = 1,
@@ -147,11 +147,11 @@ namespace Refit
                 countdownTimer = false,
                 countdownTimerValue = 30
             };
-            var roomActions = RestService.For<RoomsPageInterface.IRoom>(client);
-            var info = await roomActions.GetRoomInfo(roomDetails);
+            var roomActions = RestService.For<CreateRoom.IRoom>(client);
+            var info = await roomActions.NewRoom(roomDetails);
 
             //Then the user can delete the room
-            var delete = RestService.For<RoomsPageInterface.IRoom>(adress);
+            var delete = RestService.For<RoomDelete.IDelete>(adress);
 
 
         }
@@ -170,7 +170,7 @@ namespace Refit
 
             //When the user creates a room
 
-            var roomDetails = new RoomBody
+            var roomDetails = new Room
             {
                 name = roomName,
                 cardSetType = cardType,
@@ -182,10 +182,10 @@ namespace Refit
                 countdownTimer = false,
                 countdownTimerValue = 30
             };
-            var roomActions = RestService.For<RoomsPageInterface.IRoom>(client);
+            var roomActions = RestService.For<CreateRoom.IRoom>(client);
 
             //Then the user can set a card type
-            var info = await roomActions.GetRoomInfo(roomDetails);
+            var info = await roomActions.NewRoom(roomDetails);
         }
 
               [Fact]
@@ -202,7 +202,7 @@ namespace Refit
 
             //When the user creates a room
 
-            var roomDetails = new RoomBody
+            var roomDetails = new Room
             {
                 name = roomName,
                 cardSetType = 1,
@@ -214,18 +214,18 @@ namespace Refit
                 countdownTimer = false,
                 countdownTimerValue = 30
             };
-            var roomActions = RestService.For<RoomsPageInterface.IRoom>(client);
-            var info = await roomActions.GetRoomInfo(roomDetails);
+            var roomActions = RestService.For<CreateRoom.IRoom>(client);
+            var info = await roomActions.NewRoom(roomDetails);
 
-            var storyDetails = new StoryBody
+            var storyDetails = new Story
             {
                 RoomId = info.GameId,
                 name = storyName
             };
-            var storyActions = RestService.For<RoomPageInterface.IStory>(client);
-            var storyInfo = await storyActions.GetStory(storyDetails, storyDetails);
+            var storyActions = RestService.For<NewStory.IStory>(client);
+            var storyInfo = await storyActions.CreateStory(storyDetails, storyDetails);
 
-              var allStoryNameDetails = new StoryDetailsBody 
+              var allStoryNameDetails = new StoryDetails
             {
                 gameId = info.GameId,
                 page = 1, 
@@ -233,7 +233,7 @@ namespace Refit
                 perPage = 25,
                 status = 0
             };
-            var storyDetailsList = RestService.For<RoomPageInterface.IStory>(client);
+            var storyDetailsList = RestService.For<GetDetails.IDetails>(client);
             var allStoryDetails = await storyDetailsList.GetStoryDetails(allStoryNameDetails);
 
             //Then the user can create a story
@@ -255,7 +255,7 @@ namespace Refit
 
             // When the user creates a voting session
 
-            var roomDetails = new RoomBody
+            var roomDetails = new Room
             {
                 name = roomName,
                 cardSetType = 1,
@@ -267,18 +267,18 @@ namespace Refit
                 countdownTimer = false,
                 countdownTimerValue = 30
             };
-            var roomActions = RestService.For<RoomsPageInterface.IRoom>(client);
-            var info = await roomActions.GetRoomInfo(roomDetails);
+            var roomActions = RestService.For<CreateRoom.IRoom>(client);
+            var info = await roomActions.NewRoom(roomDetails);
 
-            var storyDetails = new StoryBody
+            var storyDetails = new Story
             {
                 RoomId = info.GameId,
                 name = storyName
             };
-            var storyActions = RestService.For<RoomPageInterface.IStory>(client);
-            var storyInfo = await storyActions.GetStory(storyDetails, storyDetails);
+            var storyActions = RestService.For<NewStory.IStory>(client);
+            var storyInfo = await storyActions.CreateStory(storyDetails, storyDetails);
 
-            var allStoryNameDetails = new StoryDetailsBody 
+            var allStoryNameDetails = new StoryDetails
             {
                 gameId = info.GameId,
                 page = 1, 
@@ -286,17 +286,17 @@ namespace Refit
                 perPage = 25,
                 status = 0
             };
-            var storyDetailsList = RestService.For<RoomPageInterface.IStory>(client);
+            var storyDetailsList = RestService.For<GetDetails.IDetails>(client);
             var allStoryDetails = await storyDetailsList.GetStoryDetails(allStoryNameDetails);
 
             
-             var newStoryNameDetails = new UpdateStoryBody 
+             var newStoryNameDetails = new UpdateStory
             {
                 StoryId = allStoryDetails.Stories[0].Id,
                 Title = newStoryName
             };
-            var newstoryDetailsList = RestService.For<RoomPageInterface.IStory>(client);
-            var newStoryDetails = await storyDetailsList.ChangeStoryName(newStoryNameDetails);
+            var newstoryDetailsList = RestService.For<NewStoryName.INewName>(client);
+            var newStoryDetails = await newstoryDetailsList.ChangeStoryName(newStoryNameDetails);
 
             allStoryDetails = await storyDetailsList.GetStoryDetails(allStoryNameDetails);
 
@@ -318,7 +318,7 @@ namespace Refit
 
             //When the user creates a voting session
 
-            var roomDetails = new RoomBody
+            var roomDetails = new Room
             {
                 name = roomName,
                 cardSetType = 1,
@@ -330,18 +330,18 @@ namespace Refit
                 countdownTimer = false,
                 countdownTimerValue = 30
             };
-            var roomActions = RestService.For<RoomsPageInterface.IRoom>(client);
-            var info = await roomActions.GetRoomInfo(roomDetails);
+            var roomActions = RestService.For<CreateRoom.IRoom>(client);
+            var info = await roomActions.NewRoom(roomDetails);
 
-            var storyDetails = new StoryBody
+            var storyDetails = new Story
             {
                 RoomId = info.GameId,
                 name = storyName
             };
-            var storyActions = RestService.For<RoomPageInterface.IStory>(client);
-            var storyInfo = await storyActions.GetStory(storyDetails, storyDetails);
+            var storyActions = RestService.For<NewStory.IStory>(client);
+            var storyInfo = await storyActions.CreateStory(storyDetails, storyDetails);
 
-            var allStoryNameDetails = new StoryDetailsBody 
+            var allStoryNameDetails = new StoryDetails
             {
                 gameId = info.GameId,
                 page = 1, 
@@ -349,15 +349,15 @@ namespace Refit
                 perPage = 25,
                 status = 0
             };
-            var storyDetailsList = RestService.For<RoomPageInterface.IStory>(client);
+            var storyDetailsList = RestService.For<GetDetails.IDetails>(client);
             var allStoryDetails = await storyDetailsList.GetStoryDetails(allStoryNameDetails);
 
-            var deleteDetails = new DeleteStoryBody
+            var deleteDetails = new DeleteStory
             {
                 GameId = info.GameId,
                 StoryId = allStoryDetails.Stories[0].Id
             };
-            var deleteStoryDetails = RestService.For<RoomPageInterface.IStory>(client);
+            var deleteStoryDetails = RestService.For<StoryDelete.IDeleteAStory>(client);
 
             //Then the user can detele a story
 
@@ -379,7 +379,7 @@ namespace Refit
 
              //When the user creates a room
 
-            var roomDetails = new RoomBody
+            var roomDetails = new Room
             {
                 name = roomName,
                 cardSetType = 1,
@@ -391,18 +391,18 @@ namespace Refit
                 countdownTimer = false,
                 countdownTimerValue = 30
             };
-            var roomActions = RestService.For<RoomsPageInterface.IRoom>(client);
-            var info = await roomActions.GetRoomInfo(roomDetails);
+            var roomActions = RestService.For<CreateRoom.IRoom>(client);
+            var info = await roomActions.NewRoom(roomDetails);
 
-            var storyDetails = new StoryBody
+            var storyDetails = new Story
             {
                 RoomId = info.GameId,
                 name = storyName
             };
-            var storyActions = RestService.For<RoomPageInterface.IStory>(client);
-            var storyInfo = await storyActions.GetStory(storyDetails, storyDetails);
+            var storyActions = RestService.For<NewStory.IStory>(client);
+            var storyInfo = await storyActions.CreateStory(storyDetails, storyDetails);
 
-              var allStoryNameDetails = new StoryDetailsBody 
+              var allStoryNameDetails = new StoryDetails
             {
                 gameId = info.GameId,
                 page = 1, 
@@ -410,14 +410,14 @@ namespace Refit
                 perPage = 25,
                 status = 0
             };
-            var storyDetailsList = RestService.For<RoomPageInterface.IStory>(client);
+            var storyDetailsList = RestService.For<GetDetails.IDetails>(client);
             var allStoryDetails = await storyDetailsList.GetStoryDetails(allStoryNameDetails);
 
-               var startBody = new  StartVotingBody
+               var startBody = new  StartVoting
             {
                 GameId = info.GameId
             };
-            var stratActions = RestService.For<RoomPageInterface.IVoting>(client);
+            var stratActions = RestService.For<StartVotingSession.IVoting>(client);
             var startDetails = await stratActions.Start(startBody);
 
             //Then the user cand start a voting session
@@ -438,7 +438,7 @@ namespace Refit
 
             //When the user start a voting session
 
-            var roomDetails = new RoomBody
+            var roomDetails = new Room
             {
                 name = roomName,
                 cardSetType = 1,
@@ -450,18 +450,18 @@ namespace Refit
                 countdownTimer = false,
                 countdownTimerValue = 30
             };
-            var roomActions = RestService.For<RoomsPageInterface.IRoom>(client);
-            var info = await roomActions.GetRoomInfo(roomDetails);
+            var roomActions = RestService.For<CreateRoom.IRoom>(client);
+            var info = await roomActions.NewRoom(roomDetails);
 
-            var storyDetails = new StoryBody
+            var storyDetails = new Story
             {
                 RoomId = info.GameId,
                 name = storyName
             };
-            var storyActions = RestService.For<RoomPageInterface.IStory>(client);
-            var storyInfo = await storyActions.GetStory(storyDetails, storyDetails);
+            var storyActions = RestService.For<NewStory.IStory>(client);
+            var storyInfo = await storyActions.CreateStory(storyDetails, storyDetails);
 
-              var allStoryNameDetails = new StoryDetailsBody 
+              var allStoryNameDetails = new StoryDetails
             {
                 gameId = info.GameId,
                 page = 1, 
@@ -469,22 +469,22 @@ namespace Refit
                 perPage = 25,
                 status = 0
             };
-            var storyDetailsList = RestService.For<RoomPageInterface.IStory>(client);
+            var storyDetailsList = RestService.For<GetDetails.IDetails>(client);
             var allStoryDetails = await storyDetailsList.GetStoryDetails(allStoryNameDetails);
 
-               var startBody = new  StartVotingBody
+               var startBody = new  StartVoting
             {
                 GameId = info.GameId
             };
-            var stratActions = RestService.For<RoomPageInterface.IVoting>(client);
+            var stratActions = RestService.For<StartVotingSession.IVoting>(client);
             var startDetails = await stratActions.Start(startBody);
 
-            var selectedVote = new VotingBody
+            var selectedVote = new Voting
             {
                 GameId = info.GameId,
                 Vote = selectedCard
             };
-            var voteActions = RestService.For<RoomPageInterface.IVoting>(client);
+            var voteActions = RestService.For<StartVotingSession.IVoting>(client);
 
             //Then the user can select a card
         }
@@ -503,7 +503,7 @@ namespace Refit
 
             //When the user start a voting session
 
-            var roomDetails = new RoomBody
+            var roomDetails = new Room
             {
                 name = roomName,
                 cardSetType = 1,
@@ -515,18 +515,18 @@ namespace Refit
                 countdownTimer = false,
                 countdownTimerValue = 30
             };
-            var roomActions = RestService.For<RoomsPageInterface.IRoom>(client);
-            var info = await roomActions.GetRoomInfo(roomDetails);
+            var roomActions = RestService.For<CreateRoom.IRoom>(client);
+            var info = await roomActions.NewRoom(roomDetails);
 
-            var storyDetails = new StoryBody
+            var storyDetails = new Story
             {
                 RoomId = info.GameId,
                 name = storyName
             };
-            var storyActions = RestService.For<RoomPageInterface.IStory>(client);
-            var storyInfo = await storyActions.GetStory(storyDetails, storyDetails);
+            var storyActions = RestService.For<NewStory.IStory>(client);
+            var storyInfo = await storyActions.CreateStory(storyDetails, storyDetails);
 
-              var allStoryNameDetails = new StoryDetailsBody 
+              var allStoryNameDetails = new StoryDetails
             {
                 gameId = info.GameId,
                 page = 1, 
@@ -534,30 +534,30 @@ namespace Refit
                 perPage = 25,
                 status = 0
             };
-            var storyDetailsList = RestService.For<RoomPageInterface.IStory>(client);
+            var storyDetailsList = RestService.For<GetDetails.IDetails>(client);
             var allStoryDetails = await storyDetailsList.GetStoryDetails(allStoryNameDetails);
 
-               var startBody = new  StartVotingBody
+               var startBody = new  StartVoting
             {
                 GameId = info.GameId
             };
-            var stratActions = RestService.For<RoomPageInterface.IVoting>(client);
+            var stratActions = RestService.For<StartVotingSession.IVoting>(client);
             var startDetails = await stratActions.Start(startBody);
 
-            var selectedVote = new VotingBody
+            var selectedVote = new Voting
             {
                 GameId = info.GameId,
                 Vote = selectedCard
             };
-            var voteActions = RestService.For<RoomPageInterface.IVoting>(client);   
+            var voteActions = RestService.For<StartVotingSession.IVoting>(client);   
 
             
-            var finishVotingBody = new FinishVotingBody
+            var finishVotingBody = new FinishVoting
             {
                 GameId = info.GameId,
                 Estimate = selectedCard
             };
-            var finishVotingActions = RestService.For<RoomPageInterface.IFinishVoting>(client); 
+            var finishVotingActions = RestService.For<EndVoting.IFinishVoting>(client); 
 
             //Then the user cand finish the voting session
             

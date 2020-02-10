@@ -1,14 +1,13 @@
 using Newtonsoft.Json;
-
 namespace Refit
 {
-        public class VotingBody
+        public class FinishVoting
     {
         [JsonProperty("gameId")]
           public int GameId {get; set; }
 
-          [JsonProperty("vote")]
-          public int Vote {get; set;}
+          [JsonProperty("estimate")]
+          public int Estimate {get; set;}
 
     }
 }

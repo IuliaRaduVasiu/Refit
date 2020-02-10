@@ -1,6 +1,6 @@
 namespace Refit
 {
-        public class StoryDetailsBody
+        public class StoryDetails
     {
         public int gameId {get; set; }
         public int page {get; set; }
