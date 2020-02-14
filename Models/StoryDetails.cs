@@ -2,10 +2,10 @@ namespace Refit
 {
         public class StoryDetails
     {
-        public int gameId {get; set; }
-        public int page {get; set; }
-        public int skip {get; set; }
-        public int perPage {get; set; }
-        public int status {get; set; }
+        public int GameId {get; set; }
+        public int Page {get; set; }
+        public int Skip {get; set; }
+        public int PerPage {get; set; }
+        public int Status {get; set; }
     }
 }

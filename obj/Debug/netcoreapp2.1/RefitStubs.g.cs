@@ -280,10 +280,10 @@ namespace Refit
         }
 
         /// <inheritdoc />
-        Task<StoryInfo> NewStory.IStory.CreateStory(Story roomId, Story name)
+        Task<StoryInfo> NewStory.IStory.CreateStory(Story roomId)
         {
-            var arguments = new object[] { roomId, name };
-            var func = requestBuilder.BuildRestResultFuncForMethod("CreateStory", new Type[] { typeof(Story), typeof(Story) });
+            var arguments = new object[] { roomId };
+            var func = requestBuilder.BuildRestResultFuncForMethod("CreateStory", new Type[] { typeof(Story) });
             return (Task<StoryInfo>)func(Client, arguments);
         }
     }

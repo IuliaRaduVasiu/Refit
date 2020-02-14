@@ -17,7 +17,7 @@ namespace Refit
              public interface IStory
         {
             [Post("/stories/create/")]
-            Task<StoryInfo> CreateStory([Body(BodySerializationMethod.UrlEncoded)] Story roomId, Story name);
+            Task<StoryInfo> CreateStory([Body(BodySerializationMethod.UrlEncoded)] Story roomId);
         }
     }
 }
