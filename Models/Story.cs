@@ -4,7 +4,9 @@ namespace Refit
 {
         public class Story
     {
-          public int RoomId {get; set; }
+        [AliasAs("gameId")]
+          public int GameId {get; set; }
+          [AliasAs("name")]
           public string Name {get; set;}
 
     }

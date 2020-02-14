@@ -255,7 +255,7 @@ namespace Refit
 
             var storyDetails = new Story
             {
-                RoomId = info.GameId,
+                GameId = info.GameId,
                 Name = storyName
             };
             var storyActions = RestService.For<NewStory.IStory>(client, new RefitSettings {
@@ -323,7 +323,7 @@ namespace Refit
 
             var storyDetails = new Story
             {
-                RoomId = info.GameId,
+                GameId = info.GameId,
                 Name = storyName
             };
             var storyActions = RestService.For<NewStory.IStory>(client, new RefitSettings {
@@ -406,7 +406,7 @@ namespace Refit
 
             var storyDetails = new Story
             {
-                RoomId = info.GameId,
+                GameId = info.GameId,
                 Name = storyName
             };
             var storyActions = RestService.For<NewStory.IStory>(client);
@@ -488,7 +488,7 @@ namespace Refit
 
             var storyDetails = new Story
             {
-                RoomId = info.GameId,
+                GameId = info.GameId,
                 Name = storyName
             };
             var storyActions = RestService.For<NewStory.IStory>(client, new RefitSettings {
@@ -567,7 +567,7 @@ namespace Refit
 
             var storyDetails = new Story
             {
-                RoomId = info.GameId,
+                GameId = info.GameId,
                 Name = storyName
             };
             var storyActions = RestService.For<NewStory.IStory>(client, new RefitSettings {
@@ -657,7 +657,7 @@ namespace Refit
 
             var storyDetails = new Story
             {
-                RoomId = info.GameId,
+                GameId = info.GameId,
                 Name = storyName
             };
             var storyActions = RestService.For<NewStory.IStory>(client, new RefitSettings {
