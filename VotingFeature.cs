@@ -124,7 +124,7 @@ namespace Refit
                 CountdownTimer = false,
                 CountdownTimerValue = 30
             };
-            var newRoomName = RestService.For<NewName.IChangeRoomName>(client, new RefitSettings {
+            var newRoomName = RestService.For<CreateRoom.IRoom>(client, new RefitSettings {
         ContentSerializer = new JsonContentSerializer( 
             new JsonSerializerSettings {
                 ContractResolver = new CamelCasePropertyNamesContractResolver()
@@ -172,7 +172,7 @@ namespace Refit
             var info = await roomActions.NewRoom(roomDetails);
 
             //Then the user can delete the room
-            var delete = RestService.For<RoomDelete.IDelete>(adress, new RefitSettings {
+            var delete = RestService.For<CreateRoom.IRoom>(adress, new RefitSettings {
         ContentSerializer = new JsonContentSerializer( 
             new JsonSerializerSettings {
                 ContractResolver = new CamelCasePropertyNamesContractResolver()
@@ -356,7 +356,7 @@ namespace Refit
                 StoryId = allStoryDetails.Stories[0].Id,
                 Title = newStoryName
             };
-            var newstoryDetailsList = RestService.For<NewStoryName.INewName>(client, new RefitSettings {
+            var newstoryDetailsList = RestService.For<NewStory.IStory>(client, new RefitSettings {
         ContentSerializer = new JsonContentSerializer( 
             new JsonSerializerSettings {
                 ContractResolver = new CamelCasePropertyNamesContractResolver()
@@ -439,7 +439,7 @@ namespace Refit
                 GameId = info.GameId,
                 StoryId = allStoryDetails.Stories[0].Id
             };
-            var deleteStoryDetails = RestService.For<StoryDelete.IDeleteAStory>(client, new RefitSettings {
+            var deleteStoryDetails = RestService.For<NewStory.IStory>(client, new RefitSettings {
         ContentSerializer = new JsonContentSerializer( 
             new JsonSerializerSettings {
                 ContractResolver = new CamelCasePropertyNamesContractResolver()

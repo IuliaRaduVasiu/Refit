@@ -18,6 +18,14 @@ namespace Refit
         {
             [Post("/stories/create/")]
             Task<StoryInfo> CreateStory([Body(BodySerializationMethod.UrlEncoded)] Story roomId);
+
+            [Post("/stories/update/")]
+            Task<StoryList> ChangeStoryName([Body(BodySerializationMethod.UrlEncoded)] UpdateStory newStoryName);
+
+            [Post("/stories/delete/")]
+            Task<StoryList> DeleteStory([Body(BodySerializationMethod.UrlEncoded)] DeleteStory storyId);
+
+            
         }
     }
 }
