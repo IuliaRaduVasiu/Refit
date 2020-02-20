@@ -13,31 +13,84 @@ namespace Refit
 {
     public class StoryFormData
     {
-        public  Story StoryBody(string roomName, string userName, string adress, string storyName)
+        public static async Task<StoryInfo> CreateStory(string roomName, string userName, string adress, string storyName)
         {
-           var storyDetails = new Story
+           var dictionary = new Dictionary<string, string> { { "name", userName } };
+            var client = new HttpClient() { BaseAddress = new Uri(adress, UriKind.Absolute) };
+            var request = new HttpRequestMessage(HttpMethod.Post, "/api/authentication/anonymous") { Content = new FormUrlEncodedContent(dictionary) };
+            var response = await client.SendAsync(request);
+            response.EnsureSuccessStatusCode();
+
+            var roomBody = RoomFormData.RoomBody(roomName);
+            var roomActions = RestService.For<CreateRoom.IRoom>(client, new RefitSettings {
+        ContentSerializer = new JsonContentSerializer( 
+            new JsonSerializerSettings {
+                ContractResolver = new CamelCasePropertyNamesContractResolver()
+        }
+    )});
+            var info = await roomActions.NewRoom(roomBody);
+            var storyDetails = new Story
             {
-                //GameId = RoomFormData.CreateRoom(roomName, userName, adress).GameId,
+                GameId = info.GameId,
                 Name = storyName
             };
-             return storyDetails;
+             var storyActions = RestService.For<NewStory.IStory>(client, new RefitSettings {
+        ContentSerializer = new JsonContentSerializer( 
+            new JsonSerializerSettings {
+                ContractResolver = new CamelCasePropertyNamesContractResolver()
+        }
+    )});
+            var storyInfo = await storyActions.CreateStory(storyDetails);
+
+            return storyInfo;
         }
 
-        public static Room CardTypeBody(string roomName, int cardType)
+        public static async Task<StoryList> StoryDetails(string roomName, string userName, string adress, string storyName)
         {
-            var roomBody = new Room
+           var dictionary = new Dictionary<string, string> { { "name", userName } };
+            var client = new HttpClient() { BaseAddress = new Uri(adress, UriKind.Absolute) };
+            var request = new HttpRequestMessage(HttpMethod.Post, "/api/authentication/anonymous") { Content = new FormUrlEncodedContent(dictionary) };
+            var response = await client.SendAsync(request);
+            response.EnsureSuccessStatusCode();
+
+            var roomBody = RoomFormData.RoomBody(roomName);
+            var roomActions = RestService.For<CreateRoom.IRoom>(client, new RefitSettings {
+        ContentSerializer = new JsonContentSerializer( 
+            new JsonSerializerSettings {
+                ContractResolver = new CamelCasePropertyNamesContractResolver()
+        }
+    )});
+            var info = await roomActions.NewRoom(roomBody);
+            var storyDetails = new Story
             {
-                Name = roomName,
-                CardSetType = cardType,
-                HaveStories = true,
-                ShowVotingToObservers = true,
-                ConfirmSkip = true,
-                AutoReveal = true,
-                ChangeVote = false,
-                CountdownTimer = false,
-                CountdownTimerValue = 30
+                GameId = info.GameId,
+                Name = storyName
             };
-            return roomBody;
+             var storyActions = RestService.For<NewStory.IStory>(client, new RefitSettings {
+        ContentSerializer = new JsonContentSerializer( 
+            new JsonSerializerSettings {
+                ContractResolver = new CamelCasePropertyNamesContractResolver()
+        }
+    )});
+            var storyInfo = await storyActions.CreateStory(storyDetails);
+
+              var allStoryNameDetails = new StoryDetails
+            {
+                GameId = info.GameId,
+                Page = 1, 
+                Skip = 0,
+                PerPage = 25,
+                Status = 0
+            };
+            var storyDetailsList = RestService.For<GetDetails.IDetails>(client, new RefitSettings {
+        ContentSerializer = new JsonContentSerializer( 
+            new JsonSerializerSettings {
+                ContractResolver = new CamelCasePropertyNamesContractResolver()
+        }
+    )});
+            var allStoryDetails = await storyDetailsList.GetStoryDetails(allStoryNameDetails);
+
+            return allStoryDetails;
         }
     }
 }

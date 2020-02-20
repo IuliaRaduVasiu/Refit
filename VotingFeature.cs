@@ -180,39 +180,13 @@ namespace Refit
             //When the user creates a room
 
             var roomBody = RoomFormData.RoomBody(roomName);
-            var roomActions = RoomFormData.CreateRoom(roomName, userName, adress);
+            var createRoom = RoomFormData.CreateRoom(roomName, userName, adress);
+            var createStory = StoryFormData.CreateStory(roomName, userName, adress, storyName);
 
-            var storyDetails = new Story
-            {
-                GameId = roomActions,
-                Name = storyName
-            };
-            var storyActions = RestService.For<NewStory.IStory>(client, new RefitSettings {
-        ContentSerializer = new JsonContentSerializer( 
-            new JsonSerializerSettings {
-                ContractResolver = new CamelCasePropertyNamesContractResolver()
-        }
-    )});
-            var storyInfo = await storyActions.CreateStory(storyDetails);
-
-              var allStoryNameDetails = new StoryDetails
-            {
-                GameId = info.GameId,
-                Page = 1, 
-                Skip = 0,
-                PerPage = 25,
-                Status = 0
-            };
-            var storyDetailsList = RestService.For<GetDetails.IDetails>(client, new RefitSettings {
-        ContentSerializer = new JsonContentSerializer( 
-            new JsonSerializerSettings {
-                ContractResolver = new CamelCasePropertyNamesContractResolver()
-        }
-    )});
-            var allStoryDetails = await storyDetailsList.GetStoryDetails(allStoryNameDetails);
+            var storyDetails = StoryFormData.StoryDetails(roomName, userName, adress, storyName);
 
             //Then the user can create a story
-            Assert.Equal(allStoryDetails.Stories[0].Title, storyName);
+            Assert.NotNull(storyDetails);
         }
 
 
