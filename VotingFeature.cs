@@ -55,25 +55,14 @@ namespace Refit
 
               //When the user creates a room
 
-            var roomDetails = new Room
-            {
-                Name = roomName,
-                CardSetType = 1,
-                HaveStories = true,
-                ShowVotingToObservers = true,
-                ConfirmSkip = true,
-                AutoReveal = true,
-                ChangeVote = false,
-                CountdownTimer = false,
-                CountdownTimerValue = 30
-            };
+            var roomBody = RoomFormData.RoomBody(roomName);
             var roomActions = RestService.For<CreateRoom.IRoom>(client, new RefitSettings {
         ContentSerializer = new JsonContentSerializer( 
             new JsonSerializerSettings {
                 ContractResolver = new CamelCasePropertyNamesContractResolver()
         }
     )});
-            var info = await roomActions.NewRoom(roomDetails);
+            var info = await roomActions.NewRoom(roomBody);
 
             //Then the room is created
 
@@ -93,38 +82,16 @@ namespace Refit
 
             //When the user creates a room
 
-            var roomDetails = new Room
-            {
-                Name = roomName,
-                CardSetType = 1,
-                HaveStories = true,
-                ShowVotingToObservers = true,
-                ConfirmSkip = true,
-                AutoReveal = true,
-                ChangeVote = false,
-                CountdownTimer = false,
-                CountdownTimerValue = 30
-            };
+            var roomBody = RoomFormData.RoomBody(roomName);
             var roomActions = RestService.For<CreateRoom.IRoom>(client, new RefitSettings {
         ContentSerializer = new JsonContentSerializer( 
             new JsonSerializerSettings {
                 ContractResolver = new CamelCasePropertyNamesContractResolver()
         }
     )});
-            var info = await roomActions.NewRoom(roomDetails);   
-              var newRoomDetails = new Room
-            {
-                Name = roomName,
-                CardSetType = 1,
-                HaveStories = true,
-                ShowVotingToObservers = true,
-                ConfirmSkip = true,
-                AutoReveal = true,
-                ChangeVote = false,
-                CountdownTimer = false,
-                CountdownTimerValue = 30
-            };
-            var newRoomName = RestService.For<CreateRoom.IRoom>(client, new RefitSettings {
+            var info = await roomActions.NewRoom(roomBody);   
+            var newRoomName = RoomFormData.RoomBody(newName);
+            var newRoomNameActions = RestService.For<CreateRoom.IRoom>(client, new RefitSettings {
         ContentSerializer = new JsonContentSerializer( 
             new JsonSerializerSettings {
                 ContractResolver = new CamelCasePropertyNamesContractResolver()
@@ -134,7 +101,7 @@ namespace Refit
            
 
             //Then the user can change the room name
-            var newInfo = await newRoomName.NewRoomName(newRoomDetails);
+            var newInfo = await newRoomNameActions.NewRoomName(newRoomName);
         }
 
               [Fact]
@@ -151,25 +118,14 @@ namespace Refit
 
             //When the user creates a room
 
-            var roomDetails = new Room
-            {
-                Name = roomName,
-                CardSetType = 1,
-                HaveStories = true,
-                ShowVotingToObservers = true,
-                ConfirmSkip = true,
-                AutoReveal = true,
-                ChangeVote = false,
-                CountdownTimer = false,
-                CountdownTimerValue = 30
-            };
+            var roomBody = RoomFormData.RoomBody(roomName);
             var roomActions = RestService.For<CreateRoom.IRoom>(client, new RefitSettings {
         ContentSerializer = new JsonContentSerializer( 
             new JsonSerializerSettings {
                 ContractResolver = new CamelCasePropertyNamesContractResolver()
         }
     )});
-            var info = await roomActions.NewRoom(roomDetails);
+            var info = await roomActions.NewRoom(roomBody);
 
             //Then the user can delete the room
             var delete = RestService.For<CreateRoom.IRoom>(adress, new RefitSettings {
@@ -196,27 +152,17 @@ namespace Refit
 
             //When the user creates a room
 
-            var roomDetails = new Room
-            {
-                Name = roomName,
-                CardSetType = cardType,
-                HaveStories = true,
-                ShowVotingToObservers = true,
-                ConfirmSkip = true,
-                AutoReveal = true,
-                ChangeVote = false,
-                CountdownTimer = false,
-                CountdownTimerValue = 30
-            };
+            var roomBody = RoomFormData.CardTypeBody(roomName, cardType);
             var roomActions = RestService.For<CreateRoom.IRoom>(client, new RefitSettings {
         ContentSerializer = new JsonContentSerializer( 
             new JsonSerializerSettings {
                 ContractResolver = new CamelCasePropertyNamesContractResolver()
         }
     )});
-
+            var info = await roomActions.NewRoom(roomBody);
             //Then the user can set a card type
-            var info = await roomActions.NewRoom(roomDetails);
+        
+            Assert.NotNull(info);
         }
 
               [Fact]
@@ -233,29 +179,12 @@ namespace Refit
 
             //When the user creates a room
 
-            var roomDetails = new Room
-            {
-                Name = roomName,
-                CardSetType = 1,
-                HaveStories = true,
-                ShowVotingToObservers = true,
-                ConfirmSkip = true,
-                AutoReveal = true,
-                ChangeVote = false,
-                CountdownTimer = false,
-                CountdownTimerValue = 30
-            };
-            var roomActions = RestService.For<CreateRoom.IRoom>(client, new RefitSettings {
-        ContentSerializer = new JsonContentSerializer( 
-            new JsonSerializerSettings {
-                ContractResolver = new CamelCasePropertyNamesContractResolver()
-        }
-    )});
-            var info = await roomActions.NewRoom(roomDetails);
+            var roomBody = RoomFormData.RoomBody(roomName);
+            var roomActions = RoomFormData.CreateRoom(roomName, userName, adress);
 
             var storyDetails = new Story
             {
-                GameId = info.GameId,
+                GameId = roomActions,
                 Name = storyName
             };
             var storyActions = RestService.For<NewStory.IStory>(client, new RefitSettings {
