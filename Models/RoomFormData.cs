@@ -22,7 +22,7 @@ namespace Refit
             response.EnsureSuccessStatusCode();
 
             var roomBody = RoomFormData.RoomBody(roomName);
-            var roomActions = RestService.For<CreateRoom.IRoom>(client, new RefitSettings {
+            var roomActions = RestService.For<IRoom>(client, new RefitSettings {
         ContentSerializer = new JsonContentSerializer( 
             new JsonSerializerSettings {
                 ContractResolver = new CamelCasePropertyNamesContractResolver()

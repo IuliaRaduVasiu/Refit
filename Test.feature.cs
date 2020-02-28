@@ -1,0 +1,5 @@
+#error (1:1): expected: #EOF, #Language, #TagLine, #FeatureLine, #Comment, #Empty, got 'Scenario: Add two numbers'
+#error (2:2): expected: #EOF, #Language, #TagLine, #FeatureLine, #Comment, #Empty, got 'Given I have entered 50 into the calculator'
+#error (3:2): expected: #EOF, #Language, #TagLine, #FeatureLine, #Comment, #Empty, got 'And I have entered 70 into the calculator'
+#error (4:2): expected: #EOF, #Language, #TagLine, #FeatureLine, #Comment, #Empty, got 'When I press add'
+#error (5:2): expected: #EOF, #Language, #TagLine, #FeatureLine, #Comment, #Empty, got 'Then the result should be 120 on the screen'

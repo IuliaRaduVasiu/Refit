@@ -19,8 +19,8 @@ namespace Refit
         public string Slowest { get; set; }
         public int Status { get; set; }
         public object VotingStart { get; set; }
-        public object VotingDuration { get; set; }
-        public object AverageVotingTime { get; set; }
+        public int VotingDuration { get; set; }
+        public int AverageVotingTime { get; set; }
         public bool HaveStories { get; set; }
         public List<object> Votes { get; set; }
     }

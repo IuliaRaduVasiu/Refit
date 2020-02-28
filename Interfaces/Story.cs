@@ -3,29 +3,24 @@ using Refit;
 
 namespace Refit
 {
-    public class NewStory
+    public interface IStory
     {
-        private string url;
-        private string cookie;
+        [Post("/stories/create/")]
+        Task CreateStory([Body(BodySerializationMethod.UrlEncoded)] Story roomId);
 
-        public NewStory(string url, string cookie)
-        {
-            this.url = url;
-            this.cookie = cookie;
-        }
+        [Post("/stories/update/")]
+        Task ChangeStoryName([Body(BodySerializationMethod.UrlEncoded)] UpdateStory newStoryName);
 
-             public interface IStory
-        {
-            [Post("/stories/create/")]
-            Task<StoryInfo> CreateStory([Body(BodySerializationMethod.UrlEncoded)] Story roomId);
+        [Post("/stories/delete/")]
+        Task DeleteStory([Body(BodySerializationMethod.UrlEncoded)] DeleteStory storyId);
 
-            [Post("/stories/update/")]
-            Task<StoryList> ChangeStoryName([Body(BodySerializationMethod.UrlEncoded)] UpdateStory newStoryName);
+        [Post("/stories/get/")]
+        Task<StoryList> GetStoryDetails([Body(BodySerializationMethod.UrlEncoded)] QueryInfo roomDetails);
 
-            [Post("/stories/delete/")]
-            Task<StoryList> DeleteStory([Body(BodySerializationMethod.UrlEncoded)] DeleteStory storyId);
+        [Post("/stories/next/")]
+        Task<StartVotingDetails> Start([Body(BodySerializationMethod.UrlEncoded)] StartVoting gameId);
 
-            
-        }
+        [Post("/stories/finish/")]
+        Task Finish([Body(BodySerializationMethod.UrlEncoded)] VoteEnd gameId);
     }
 }

@@ -1,0 +1,42 @@
+﻿<Properties StartupConfiguration="{8D4EFF8A-AC9D-4080-8FA5-76E20F1AF15D}|Default">
+  <MonoDevelop.Ide.ItemProperties.RefitFramework PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Test.feature.cs">
+    <Files>
+      <File FileName="VotingFeature.cs" Line="690" Column="1" />
+      <File FileName="Models/FinishVoting.cs" />
+      <File FileName="Models/RoomFormData.cs" />
+      <File FileName="Models/StoryDetails.cs" />
+      <File FileName="Test.feature" Line="2" Column="13" />
+      <File FileName="Models/Story.cs" />
+      <File FileName="Test.feature.cs" Line="5" Column="33" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="RefitFramework" expanded="True">
+            <Node name="RefitFramework" expanded="True">
+              <Node name="Test.feature.cs" selected="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+      <Pad Id="MonoDevelop.UnitTesting.TestPad">
+        <State name="__root__">
+          <Node name="RefitFramework" expanded="True">
+            <Node name="RefitFramework" selected="True" />
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <Debugger.DebugSourceFolders />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore>
+      <RunToCursorBreakpoint file="/Users/iulia/Desktop/Refit/Test.feature" relfile="Test.feature" line="6" column="1" />
+      <RunToCursorBreakpoint file="/Users/iulia/Desktop/Refit/Test.feature" relfile="Test.feature" line="5" column="6" />
+    </BreakpointStore>
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>
